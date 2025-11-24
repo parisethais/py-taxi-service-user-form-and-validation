@@ -1,9 +1,11 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
+
 from .models import Car
 
 Driver = get_user_model()
+
 
 def validate_license_number(value: str) -> str:
     if len(value) != 8:

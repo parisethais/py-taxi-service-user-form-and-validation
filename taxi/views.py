@@ -1,19 +1,15 @@
-from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .forms import (
-    DriverCreationForm,
-    DriverLicenseUpdateForm,
-    CarForm,
-)
+from .forms import DriverCreationForm, DriverLicenseUpdateForm, CarForm
 from .models import Car, Manufacturer
 
 Driver = get_user_model()
+
 
 @login_required
 def index(request):
