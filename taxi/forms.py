@@ -9,16 +9,22 @@ Driver = get_user_model()
 
 def validate_license_number(value: str) -> str:
     if len(value) != 8:
-        raise forms.ValidationError("License number must contain exactly 8 characters")
+        raise forms.ValidationError(
+            "License number must contain exactly 8 characters"
+        )
 
     prefix = value[:3]
     suffix = value[3:]
 
     if not prefix.isalpha() or not prefix.isupper():
-        raise forms.ValidationError("First 3 characters must be uppercase letters")
+        raise forms.ValidationError(
+            "First 3 characters must be uppercase letters"
+        )
 
     if not suffix.isdigit():
-        raise forms.ValidationError("Last 5 characters must be digits")
+        raise forms.ValidationError(
+            "Last 5 characters must be digits"
+        )
 
     return value
 
@@ -26,7 +32,11 @@ def validate_license_number(value: str) -> str:
 class DriverCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = Driver
-        fields = ("username", "first_name", "last_name", "license_number")
+        fields = (
+            "username",
+            "first_name",
+            "last_name",
+            "license_number")
 
     def clean_license_number(self):
         license_number = self.cleaned_data["license_number"]
